@@ -48,17 +48,17 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.common.js'   //Ä¬ÈÏ NPM °üµ¼³öµÄÊÇ ÔËĞĞÊ± ¹¹½¨¡£ÎªÁËÊ¹ÓÃ¶ÀÁ¢¹¹½¨£¬ÔÚ webpack ÅäÖÃÖĞÌí¼Ó±ğÃû ¶ÀÁ¢¹¹½¨°üº¬Ä£°å±àÒëÆ÷
+      'vue$': 'vue/dist/vue.common.js'   //é»˜è®¤ NPM åŒ…å¯¼å‡ºçš„æ˜¯ è¿è¡Œæ—¶ æ„å»ºã€‚ä¸ºäº†ä½¿ç”¨ç‹¬ç«‹æ„å»ºï¼Œåœ¨ webpack é…ç½®ä¸­æ·»åŠ åˆ«å ç‹¬ç«‹æ„å»ºåŒ…å«æ¨¡æ¿ç¼–è¯‘å™¨
     }
   },
   devServer: {
-    historyApiFallback: true,  //ÔÚ¿ª·¢µ¥Ò³Ó¦ÓÃÊ±·Ç³£ÓĞÓÃ£¬ËüÒÀÀµÓÚHTML5 history API£¬Èç¹ûÉèÖÃÎªtrue£¬ËùÓĞµÄÌø×ª½«Ö¸Ïòindex.html
+    historyApiFallback: true,  //åœ¨å¼€å‘å•é¡µåº”ç”¨æ—¶éå¸¸æœ‰ç”¨ï¼Œå®ƒä¾èµ–äºHTML5 history APIï¼Œå¦‚æœè®¾ç½®ä¸ºtrueï¼Œæ‰€æœ‰çš„è·³è½¬å°†æŒ‡å‘index.html
     noInfo: true
   },
   performance: {
-    hints: false              //½ûÓÃ¾¯¸æĞÅÏ¢
+    hints: false              //ç¦ç”¨è­¦å‘Šä¿¡æ¯
   },
-  devtool: '#eval-source-map' //Õâ¸öÑ¡Ïî¿ÉÒÔÔÚ²»Ó°Ïì¹¹½¨ËÙ¶ÈµÄÇ°ÌáÏÂÉú³ÉÍêÕûµÄsourcemap
+  devtool: '#eval-source-map' //è¿™ä¸ªé€‰é¡¹å¯ä»¥åœ¨ä¸å½±å“æ„å»ºé€Ÿåº¦çš„å‰æä¸‹ç”Ÿæˆå®Œæ•´çš„sourcemap ï¼ˆmapä¼šæ‰“åœ¨å¯¹åº”çš„jsé‡Œï¼‰
 }
 
 if (process.env.NODE_ENV === 'production') {
