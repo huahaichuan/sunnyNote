@@ -7,3 +7,10 @@ import router from './router/index';
 import store from './store/index';
 import VueMaterial  from 'vue-material';
 import VueTouch from 'vue-touch';
+
+new Vue({
+    router,
+    store,
+    el: '#app',
+    render: h => h(App)
+});
