@@ -6,7 +6,31 @@ import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
 import VueMaterial  from 'vue-material';
-import VueTouch from 'vue-touch';
+
+
+//注册主题
+Vue.use(VueMaterial);
+Vue.material.registerTheme('default', {
+    primary: 'blue',
+    accent: 'red',
+    warn: 'red',
+    background: 'grey'
+});
+
+Vue.material.registerTheme('blue', {
+    primary: 'blue',
+    accent: 'red',
+    warn: 'red',
+    background: 'white'
+});
+
+Vue.material.registerTheme('teal', {
+    primary: 'teal',
+    accent: 'red',
+    warn: 'red',
+    background: 'white'
+});
+
 
 new Vue({
     router,

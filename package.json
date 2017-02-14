@@ -6,7 +6,7 @@
   "author": "hhc",
   "license": "ISC",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "material-design-icons": "^3.0.1",
     "vue": "^2.1.10",
     "vue-material": "^0.6.3",
     "vue-router": "^2.2.0",
