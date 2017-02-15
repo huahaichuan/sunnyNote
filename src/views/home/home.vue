@@ -11,10 +11,9 @@
                 <!--<p class="soucecode">SouceCode:</p>-->
                 <!--<p><a href="https://github.com/alex1504/vue2.0-demo">https://github.com/alex1504/vue2.0-demo</a></p>-->
             <!--</md-sidenav>-->
-            <div>{{msg}}</div>
-            <!--<keep-alive>-->
-                <!--<router-view></router-view>-->
-            <!--</keep-alive>-->
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </md-theme>
 
 
@@ -23,7 +22,7 @@
 <script>
     import navBar from "../../components/common/navbar.vue"
 //    import movie from "../../components/movie/movie.vue"
-//    import music from "../../components/music/music.vue"
+    import music from "../../components/music/music.vue"
     export default {
         data(){
             return{

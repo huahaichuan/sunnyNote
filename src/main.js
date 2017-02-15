@@ -7,14 +7,15 @@ import router from './router/index';
 import store from './store/index';
 import VueMaterial  from 'vue-material';
 
-
+/*全局常量*/
+global.API_PROXY = 'https://bird.ioliu.cn/v1/?url=';
 //注册主题
 Vue.use(VueMaterial);
 Vue.material.registerTheme('default', {
     primary: 'blue',
     accent: 'red',
     warn: 'red',
-    background: 'grey'
+    background: 'white'
 });
 
 Vue.material.registerTheme('blue', {
