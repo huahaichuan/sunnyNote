@@ -16,8 +16,8 @@
                 <md-bottom-bar md-shift class="btm-nav">
                     <md-bottom-bar-item @click.native="doAction(0)" :class="{'md-active': getActive(0)}" md-icon="movie">电影</md-bottom-bar-item>
                     <md-bottom-bar-item @click.native="doAction(1)" :class="{'md-active': getActive(1)}" md-icon="music_note">音乐</md-bottom-bar-item>
-                    <md-bottom-bar-item @click.native="doAction(2)" :class="{'md-active': getActive(2)}" md-icon="mood">笑话</md-bottom-bar-item>
-                    <md-bottom-bar-item @click.native="doAction(3)" :class="{'md-active': getActive(3)}" md-icon="photo">图片</md-bottom-bar-item>
+                    <md-bottom-bar-item @click.native="doAction(2)" :class="{'md-active': getActive(2)}" md-icon="photo">图片</md-bottom-bar-item>
+                    <md-bottom-bar-item @click.native="doAction(3)" :class="{'md-active': getActive(3)}" md-icon="mood">笑话</md-bottom-bar-item>
                 </md-bottom-bar>
             </transition>
 
@@ -63,9 +63,6 @@
 //                this.$router.push({name:'login'});
 //            },
             doAction(index) {
-                this.go(index);
-            },
-            go(index){
                 switch(index) {
                     case 0:
                         this.$router.push({name:'movie'});
@@ -74,10 +71,10 @@
                         this.$router.push({name:'music'});
                         break;
                     case 2:
-                        this.$router.push({name:'book'});
+                        this.$router.push({name:'photo'});
                         break;
                     case 3:
-                        this.$router.push({name:'photo'});
+                        this.$router.push({name:'joke'});
                         break;
                 }
             },
@@ -86,8 +83,8 @@
                 var mapRoute = {
                     "movie": 0,
                     "music": 1,
-                    "book":  2,
-                    'photo': 3
+                    'photo': 2,
+                    "joke":  3
                 }
                 if(mapRoute[this.activeRoute]==index){
                     return true;

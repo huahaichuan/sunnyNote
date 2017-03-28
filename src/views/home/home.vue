@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <md-theme :md-name="theme">
-            <navBar></navBar>
+            <nav-bar></nav-bar>
             <!--<md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">-->
                 <!--<md-toolbar class="md-large">-->
                     <!--<div class="md-toolbar-container">-->

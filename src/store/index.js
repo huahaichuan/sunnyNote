@@ -8,7 +8,6 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        them:'default',
         activeRoute: 'movie'
     },
     getters: {
@@ -17,17 +16,13 @@ const store = new Vuex.Store({
         		"movie": 'blue',
         		'movie-detail': 'blue',
         		"music": 'teal',
-        		"book": 'brown',
-        		'photo': 'indigo',
-        		'photo-detail': 'indigo'
+        		"joke": 'brown',
+        		'photo': 'indigo'
         	}
         	return mapTheme[state.activeRoute]
         }
     },
     mutations:{
-        [types.THEME_CHANGE](state,payload){
-            state.theme = payload.theme
-        },
         [types.ROUTE_CHANGE](state,payload){
             state.activeRoute = payload.activeRoute
         }

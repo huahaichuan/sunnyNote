@@ -46,24 +46,7 @@ html,body{
     color:blue;
 }
 
-
-
-
-
-/* 图标 */
-.iconfont{
-	width: 24px;
-    min-width: 24px;
-    height: 24px;
-    min-height: 24px;
-    margin: auto;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    fill: currentColor;
-    vertical-align: middle;
-    font-size: 18px;
+.md-spinner{
+    position: fixed;
+    top:100px;
 }

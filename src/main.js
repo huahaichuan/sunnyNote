@@ -8,7 +8,7 @@ import store from './store/index';
 import VueMaterial  from 'vue-material';
 
 /*全局常量*/
-global.API_PROXY = 'https://bird.ioliu.cn/v1/?url=';
+global.API_PROXY = 'https://bird.ioliu.cn';
 //注册主题
 Vue.use(VueMaterial);
 Vue.material.registerTheme('default', {
@@ -32,6 +32,19 @@ Vue.material.registerTheme('teal', {
     background: 'white'
 });
 
+Vue.material.registerTheme('brown', {
+    primary: 'brown',
+    accent: 'red',
+    warn: 'red',
+    background: 'white'
+});
+
+Vue.material.registerTheme('indigo', {
+    primary: 'indigo',
+    accent: 'red',
+    warn: 'red',
+    background: 'white'
+});
 
 new Vue({
     router,

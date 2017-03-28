@@ -13,13 +13,28 @@ const router = new VueRouter({
             component: require('../views/home/home.vue'),
             children:[
                 {
+                    name:'movie',
+                    path:'/movie',
+                    component:require('../components/movie/movie.vue')
+                },
+                {
                     name:'music',
                     path:'/music',
                     component:require('../components/music/music.vue')
+                },
+                {
+                    name:'photo',
+                    path:'/photo',
+                    component:require('../components/photo/photo.vue')
+                },
+                {
+                    name:'joke',
+                    path:'/joke',
+                    component:require('../components/joke/joke.vue')
                 }
             ]
         },
-        {path:'*',redirect:'./home'}
+        {path:'*',redirect:'./movie'}
     ]
 });
 export default router;

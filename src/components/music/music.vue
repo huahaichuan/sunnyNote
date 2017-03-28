@@ -9,7 +9,7 @@
             <md-icon>library_music</md-icon>随便听听
         </md-button>
         <md-list>
-            <md-list-item v-for="(music,index) of musicList" @click="togglePlay(music)" :class="{'odd':index%2}">
+            <md-list-item v-for="(music,index) of musicList" @click="togglePlay(music)">
                 <md-avatar>
                     <img :src="music.album.picUrl">
                 </md-avatar>
@@ -20,9 +20,11 @@
             </md-list-item>
         </md-list>
 
-        <md-snackbar :md-position="'top center'" ref="snackbar" :md-duration="2000">
+        <md-snackbar :md-position="'top center'" ref="snackbar" :md-duration="3000">
             <span>{{snackContent}}</span>
         </md-snackbar>
+
+        <md-spinner md-indeterminate v-show='spinnerFlag'></md-spinner>
     </div>
 </template>
 
@@ -34,7 +36,8 @@
                 musicList:[],
                 src:'',
                 snackContent:'网络异常，稍后再试.',
-                playListId:600188621
+                playListId:600188621,
+                spinnerFlag:true
             }
         },
         methods:{
@@ -63,11 +66,13 @@
             },
             randomListen(){
                 this.playListId=parseInt(Math.random()*10*(60030000-20000000)+20000000);
+                this.spinnerFlag=true;          //显示spinner
                 this.getMusicList();
             },
             getMusicList(){
                 var me = this;
-                axios.get(API_PROXY+'http://music.163.com/api/playlist/detail?id='+me.playListId).then(function(res){
+                axios.get(API_PROXY+'/v1/?url=http://music.163.com/api/playlist/detail?id='+me.playListId).then(function(res){
+                    me.spinnerFlag=false;    //隐藏spinner
                     if(res.status==200){
                         me.musicList=[];
                         if(!res.data.result.tracks.length){
@@ -82,13 +87,17 @@
                         me.openSnack();
                     }
                 }).catch(function(error){
+                    me.spinnerFlag=false;    //隐藏spinner
                     console.log(error);
                     me.randomListen();
                 });
             },
             search(e){
                 var me = this;
+                if(me.spinnerFlag){return;}
+                me.spinnerFlag=true;          //显示spinner
                 axios.get(API_PROXY+'http://s.music.163.com/search/get?type=1&s='+e.target.value).then(function(res){
+                    me.spinnerFlag=false;    //隐藏spinner
                     if(res.status==200){
                         me.musicList=[];
                         res.data.result.songs.forEach(function(item){
@@ -100,6 +109,7 @@
                         me.openSnack();
                     }
                 }).catch(function(error){
+                    me.spinnerFlag=false;    //隐藏spinner
                     console.log(error);
                 });
             }
@@ -141,10 +151,11 @@
         right: 0px;
         z-index: 2;
     }
-    .odd{
+    .md-list-item:nth-child(odd){
         background: #f8f8f8;
     }
     .music-name{
         white-space: nowrap; overflow: hidden;word-wrap:normal;-o-text-overflow:ellipsis;text-overflow:ellipsis;
     }
+
 </style>
