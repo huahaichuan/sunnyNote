@@ -1,5 +1,5 @@
 <template>
-    <div id="commingMovie">
+    <div id="commingMovie" class="comming-container j-container">
         <md-list>
             <md-list-item v-for="(movie,index) of movieList">
                 <md-avatar>
@@ -9,6 +9,12 @@
                 <div class="md-list-text-container">
                     <span>{{movie.title}}</span>
                     <span>{{movie.genres.join('/')}}({{movie.year}})</span>
+                    <p>
+                        <md-icon class="md-star" v-for="star of getStarList(movie.rating.stars)">
+                            {{star==1?'star':'star_half'}}
+                        </md-icon>
+                        ({{movie.rating.average>0?movie.rating.average:'暂无评分'}})
+                    </p>
                 </div>
                 <md-icon>
                     keyboard_arrow_right
@@ -16,9 +22,6 @@
 
             </md-list-item>
         </md-list>
-        <md-snackbar :md-position="'top center'" ref="snackbar" :md-duration="3000">
-            <span>{{snackContent}}</span>
-        </md-snackbar>
     </div>
 </template>
 
@@ -28,7 +31,6 @@
         data(){
             return {
                 movieList:[],
-                snackContent:'网络异常，稍后再试.',
                 more:true,
                 getFlag:false
             }
@@ -36,6 +38,9 @@
         methods: {
             spinnerToggle:function(spinnerFlag){
                 this.$emit('spinner-change', spinnerFlag);
+            },
+            openSnack(snackContent){
+                this.$emit('snackbar-change', snackContent);
             },
             getStarList:function(stars){      //把星分数转化为数组
                 var startList=[];
@@ -62,12 +67,12 @@
                             me.more=false;
                         }
                     }else{
-                        this.snackContent="网络异常,刷新重试";
-                        me.openSnack();
+                        me.openSnack("网络异常,刷新重试");
                     }
                 }).catch(function(error){
                     me.spinnerToggle(false);    //隐藏spinner
                     me.getFlag = false;
+                    me.openSnack("被豆瓣嫌弃了-_-|||");
                     console.log(error);
                 });
             }
@@ -78,9 +83,11 @@
             this.getMovieList();
             this.spinnerToggle(true);    //显示spinner
             var me = this;
-            window.addEventListener('scroll',function (e) {
+            var el =document.querySelector('.comming-container');
+            el.addEventListener('scroll',function (e) {
                 if(me.getFlag){return;}
-                if (document.body.scrollTop >= (document.body.scrollHeight - document.body.offsetHeight)) {
+                if (el.scrollTop >= (el.scrollHeight - el.offsetHeight)) {
+                    me.getFlag=true;
                     me.getMovieList();
                 }
             });
@@ -90,7 +97,9 @@
 
 <style lang="less">
     #commingMovie{
-        min-height: 70vh;
+        text-align: center;
+        height: 77vh;
+        overflow-y: scroll;
         padding-top: 48px;
     }
     .md-list-item{

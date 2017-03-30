@@ -96,7 +96,7 @@
                 var me = this;
                 if(me.spinnerFlag){return;}
                 me.spinnerFlag=true;          //显示spinner
-                axios.get(API_PROXY+'http://s.music.163.com/search/get?type=1&s='+e.target.value).then(function(res){
+                axios.get(API_PROXY+'/v1/?url=http://s.music.163.com/search/get?type=1&s='+e.target.value).then(function(res){
                     me.spinnerFlag=false;    //隐藏spinner
                     if(res.status==200){
                         me.musicList=[];

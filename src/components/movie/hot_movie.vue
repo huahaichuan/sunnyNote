@@ -1,6 +1,6 @@
 <template>
-    <div id="hotMovie">
-        <md-list>
+    <div id="hotMovie" class="hot-container j-container">
+        <md-list class="custom-list md-triple-line">
             <md-list-item v-for="(movie,index) of movieList">
                 <md-avatar>
                     <img :src="movie.images.small">
@@ -22,9 +22,6 @@
 
             </md-list-item>
         </md-list>
-        <md-snackbar :md-position="'top center'" ref="snackbar" :md-duration="3000">
-            <span>{{snackContent}}</span>
-        </md-snackbar>
     </div>
 </template>
 
@@ -34,7 +31,6 @@
         data(){
             return {
                 movieList:[],
-                snackContent:'网络异常，稍后再试.',
                 more:true,
                 getFlag:false
             }
@@ -42,6 +38,9 @@
         methods: {
             spinnerToggle:function(spinnerFlag){
                 this.$emit('spinner-change', spinnerFlag);
+            },
+            openSnack(snackContent){
+                this.$emit('snackbar-change', snackContent);
             },
             getStarList:function(stars){      //把星分数转化为数组
                 var startList=[];
@@ -58,8 +57,6 @@
                 if(!me.more){return;}
                 me.spinnerToggle(true);    //显示spinner
                 axios.get(API_PROXY+'/v1/?url=https://api.douban.com/v2/movie/in_theaters?count=10&start='+me.movieList.length).then(function(res){
-                    me.spinnerToggle(false);    //隐藏spinner
-                    me.getFlag = false;
                     if(res.status==200){
                         res.data.subjects.forEach(function (item) {
                             me.movieList.push(item);
@@ -68,12 +65,12 @@
                             me.more=false;
                         }
                     }else{
-                        this.snackContent="网络异常,刷新重试";
-                        me.openSnack();
+                        me.openSnack("网络异常,刷新重试");
                     }
                 }).catch(function(error){
                     me.spinnerToggle(false);    //隐藏spinner
                     me.getFlag = false;
+                    me.openSnack("被豆瓣嫌弃了-_-|||");
                     console.log(error);
                 });
             }
@@ -84,9 +81,11 @@
             this.getMovieList();
             this.spinnerToggle(true);    //显示spinner
             var me = this;
-            window.addEventListener('scroll',function (e) {
+            var el =document.querySelector('.hot-container');
+            el.addEventListener('scroll',function (e) {
                if(me.getFlag){return;}
-                if (document.body.scrollTop >= (document.body.scrollHeight - document.body.offsetHeight)) {
+                if (el.scrollTop >= (el.scrollHeight - el.offsetHeight)) {
+                    me.getFlag=true;
                     me.getMovieList();
                 }
             });
@@ -96,7 +95,9 @@
 
 <style lang="less">
     #hotMovie{
-        min-height: 70vh;
+        text-align: center;
+        height: 77vh;
+        overflow-y: scroll;
         padding-top: 48px;
     }
     .md-list-item{

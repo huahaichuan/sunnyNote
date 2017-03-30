@@ -3,15 +3,40 @@
         <md-theme :md-name="theme">
             <transition name="slideT">
                 <md-toolbar class="top-nav">
-                    <!--<md-button class="md-icon-button">-->
-                        <!--<md-icon><md-icon>home</md-icon></md-icon>-->
-                    <!--</md-button>-->
+                    <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
+                        <md-icon>menu</md-icon>
+                    </md-button>
                     <h2 class="md-title" style="flex: 1" v-text="activeRoute"></h2>
                     <!--<md-button class="md-icon-button">-->
                         <!--<md-icon @click.native="logout"><i class="iconfont icon-logout"></i></md-icon>-->
                     <!--</md-button>-->
                 </md-toolbar>
             </transition>
+
+            <md-sidenav class="md-left" ref="leftSidenav">
+                <md-toolbar class="md-large">
+                    <p class="tips">
+                        有时，外面下着雨,心却晴着；又有时，外面晴着,心却下着雨。欢迎来到心晴手札，愿你在此找到属于自己的心晴
+                        <md-button class="md-icon-button message-btn">
+                            <md-icon>favorite</md-icon>
+                        </md-button>
+                    </p>
+                </md-toolbar>
+
+                <p class="message-list">
+                    <md-button class="md-icon-button message-btn">
+                        <md-icon>face</md-icon>
+                    </md-button>
+                   huahaichuan
+                </p>
+                <p class="message-list">
+                    <md-button class="md-icon-button message-btn">
+                        <md-icon>mail_outline</md-icon>
+                    </md-button>
+                    649775996@qq.com
+                </p>
+            </md-sidenav>
+
             <transition name="slideD">
                 <md-bottom-bar md-shift class="btm-nav">
                     <md-bottom-bar-item @click.native="doAction(0)" :class="{'md-active': getActive(0)}" md-icon="movie">电影</md-bottom-bar-item>
@@ -92,9 +117,9 @@
                     return false;
                 }
             },
-//            toggleLeftSidenav() {
-//                this.$emit("toggleLeftSidenav");
-//            },
+            toggleLeftSidenav() {
+                this.$refs.leftSidenav.toggle();
+            },
         }
     }
 </script>
@@ -125,7 +150,18 @@
     .slideD-enter, .slideD-leave-active {
         transform: translateY(100%);
     }
-
+    .message-list,.tips{
+        text-align: left;
+    }
+    .tips{
+        .md-button{
+            height: 24px;
+            min-height: 24px;
+        }
+    }
+    .message-btn{
+        vertical-align: middle;
+    }
     .btm-nav-icon{
         display: block;
         margin-top: -26px;

@@ -55,7 +55,6 @@
                 axios.get('http://v3.wufazhuce.com:8000/api/hp/bymonth/'+dateStr).then(function(res){
                     me.spinnerFlag=false;    //隐藏spinner
                     if(res.status==200){
-                        console.log(res.data);
                         me.photoList= res.data.data;
                     }else{
                         this.snackContent="网络异常,刷新重试";
