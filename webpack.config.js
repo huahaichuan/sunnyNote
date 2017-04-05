@@ -7,11 +7,12 @@ module.exports = {
     'build':'./src/main.js'
   },
   output: {
+    path: path.resolve(__dirname, './build'),
     publicPath: '/build/',
     filename: 'build.js'
   },
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -28,8 +29,11 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        query: {
+          presets: ['es2015']
+        }
       },
       {
         test: /\.less$/,
@@ -45,7 +49,7 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
-      }
+      },
     ]
   },
   resolve: {

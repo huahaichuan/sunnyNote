@@ -6,7 +6,6 @@ import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
 import VueMaterial  from 'vue-material';
-
 /*全局常量*/
 global.API_PROXY = 'https://bird.ioliu.cn';
 //注册主题

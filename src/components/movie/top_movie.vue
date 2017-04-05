@@ -58,6 +58,8 @@
             if(!me.more){return;}
             me.spinnerToggle(true);    //显示spinner
             axios.get(API_PROXY+'/v1/?url=https://api.douban.com/v2/movie/top250?count=10&start'+me.movieList.length).then(function(res){
+                me.spinnerToggle(false);    //隐藏spinner
+                me.getFlag = false;
                 if(res.status==200){
                     res.data.subjects.forEach(function (item) {
                         me.movieList.push(item);

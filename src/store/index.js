@@ -24,8 +24,8 @@ const store = new Vuex.Store({
     },
     mutations:{
         [types.ROUTE_CHANGE](state,payload){
-            state.activeRoute = payload.activeRoute
-        }
+			state.activeRoute = payload.activeRoute
+		}
     }
 });
 

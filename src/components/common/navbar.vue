@@ -6,7 +6,7 @@
                     <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
                         <md-icon>menu</md-icon>
                     </md-button>
-                    <h2 class="md-title" style="flex: 1" v-text="activeRoute"></h2>
+                    <h2 class="md-title" style="flex: 1;margin-left: -40px" v-text="activeRoute"></h2>
                     <!--<md-button class="md-icon-button">-->
                         <!--<md-icon @click.native="logout"><i class="iconfont icon-logout"></i></md-icon>-->
                     <!--</md-button>-->
