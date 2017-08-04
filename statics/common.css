@@ -17,9 +17,7 @@ html,body{
 
 
 /* Vue-material 组件 */
-.md-spinner{
-	margin: 10px auto 0;
-}
+
 .md-dialog-container.md-active .md-dialog{
 	background: #fff;
 }
@@ -49,4 +47,6 @@ html,body{
 .md-spinner{
     position: fixed;
     top:100px;
+	left: 50%;
+	margin-left: -25px;
 }
